@@ -1,0 +1,57 @@
+/* ============================================
+   PyCon DE 2026 – Brand Styles
+   Font: Helvetica (with Arial/sans-serif fallback)
+   Colors: from the official Media Kit
+   ============================================ */
+
+:root {
+  /* PyCon DE 2026 brand colors */
+  --pycon-silver:     #b7bcbf;
+  --pycon-orange:     #ff9b00;
+  --pycon-yellow:     #fac800;
+  --pycon-light-green:#96dc00;
+  --pycon-light-blue: #00c8e1;
+  --pycon-dark-blue:  #3778be;
+  --pycon-dark-green: #00aa41;
+
+  /* Slidev theme overrides */
+  --slidev-theme-primary: var(--pycon-light-blue);
+
+  /* Dark background instead of pure black */
+  --slidev-slide-container-background: #1e1e1e;
+}
+
+/* Slide background */
+.slidev-layout {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+/* Global font override */
+* {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+
+/* Headings */
+.slidev-layout h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-weight: 600;
+}
+
+/* Code blocks keep monospace */
+code, pre, .shiki, .shiki * {
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace !important;
+}
+
+/* Inline code snippets */
+.slidev-layout :not(pre) > code {
+  color: var(--pycon-light-green) !important;
+  background: rgba(150, 220, 0, 0.1);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
