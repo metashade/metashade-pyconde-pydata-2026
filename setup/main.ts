@@ -13,7 +13,9 @@ export default defineAppSetup(({ router }) => {
 
     // 1. Configure GoatCounter, preserving existing configuration if any
     customWindow.goatcounter = customWindow.goatcounter || {}
-    customWindow.goatcounter.no_onload = true
+    if (customWindow.goatcounter.no_onload === undefined) {
+      customWindow.goatcounter.no_onload = true
+    }
 
     // 2. Dynamically inject the script tag with an ID guard
     const scriptId = 'goatcounter-script'
