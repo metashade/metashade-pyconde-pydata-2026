@@ -1,10 +1,19 @@
 import { defineAppSetup } from '@slidev/types'
 
+interface GoatCounterWindow extends Window {
+  goatcounter?: {
+    no_onload?: boolean
+    count?: (options: { path: string }) => void
+  }
+}
+
 export default defineAppSetup(({ router }) => {
   if (typeof window !== 'undefined' && import.meta.env.PROD) {
+    const customWindow = window as unknown as GoatCounterWindow
+
     // 1. Configure GoatCounter, preserving existing configuration if any
-    (window as any).goatcounter = (window as any).goatcounter || {};
-    (window as any).goatcounter.no_onload = true
+    customWindow.goatcounter = customWindow.goatcounter || {}
+    customWindow.goatcounter.no_onload = true
 
     // 2. Dynamically inject the script tag with an ID guard
     const scriptId = 'goatcounter-script'
@@ -23,7 +32,7 @@ export default defineAppSetup(({ router }) => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null
 
     const count = () => {
-      const gc = (window as any).goatcounter
+      const gc = customWindow.goatcounter
       if (gc && gc.count) {
         gc.count({
           path: window.location.pathname + window.location.hash,
